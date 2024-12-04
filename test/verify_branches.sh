@@ -33,7 +33,9 @@ test_upstream_branch_exists() {
     write_out "b" "sending request to ${UPSTREAM_REPO_URL}"
     VERIFY_UPSTREAM_BRANCH=$(git ls-remote "${UPSTREAM_REPO_URL}" "${INPUT_UPSTREAM_SYNC_BRANCH}" --quiet)
     SECOND_TRY=$(git ls-remote "https://test/${UPSTREAM_REPO_URL}.test" "${INPUT_UPSTREAM_SYNC_BRANCH}")
+    THIRD_TRY=$(git ls-remote "https://git:olp_4QEdugEqhfiBlN9g4zPVEBkHY43XDT1FSzQZ@git.overleaf.com/64773a530f15bea1ef6bbcce.git/" "${INPUT_UPSTREAM_SYNC_BRANCH}")
     write_out "b" "second attempt: ${SECOND_TRY}"
+    write_out "b" "third attempt: ${THIRD_TRY}"
 
     # var contains the ref on success, so fail if return value is empty
     if [ -z "${VERIFY_UPSTREAM_BRANCH}" ]; then
