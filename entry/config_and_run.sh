@@ -65,11 +65,9 @@ fi
 if [ -z "${INPUT_UPSTREAM_REPO_ACCESS_TOKEN}" ]; then
     # shellcheck disable=SC2034
     UPSTREAM_REPO_URL="https://${INPUT_HOST_DOMAIN}/${INPUT_UPSTREAM_SYNC_REPO}.git"
-    write_out "b" "setting upstream repo url to not use token: ${UPSTREAM_REPO_URL}"
 else
     # shellcheck disable=SC2034
     UPSTREAM_REPO_URL="https://${INPUT_GITHUB_ACTOR}:${INPUT_UPSTREAM_REPO_ACCESS_TOKEN}@${INPUT_HOST_DOMAIN}/${INPUT_UPSTREAM_SYNC_REPO}.git"
-    write_out "b" "setting upstream repo url to use token: ${UPSTREAM_REPO_URL} Using gihub actor ${GITHUB_ACTOR}, Checking for @sign escaping"
 fi
 
 # Fork to live action or test mode based on INPUT_TEST_MODE flag
