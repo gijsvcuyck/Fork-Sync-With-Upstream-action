@@ -6,11 +6,15 @@ push_new_commits() {
 
     # TODO: figure out how this would work in local mode...
     # update remote url with token since it is not persisted during checkout step when syncing from a private repo
+    write_out "b" "now attempting to push with github actor: ${GITHUB_ACTOR} to repo github.com/${GITHUB_REPOSITORY}.git"
     if [ -n "${INPUT_TARGET_REPO_TOKEN}" ]; then
         git remote set-url origin "https://${GITHUB_ACTOR}:${INPUT_TARGET_REPO_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
     fi
 
     # shellcheck disable=SC2086
+    write_out "b" "branch check:"
+    git branch -a
+    write_out "b" "now pushing origin ${INPUT_TARGET_SYNC_BRANCH}"
     git push ${INPUT_TARGET_BRANCH_PUSH_ARGS} origin "${INPUT_TARGET_SYNC_BRANCH}"
     COMMAND_STATUS=$?
 
